@@ -1,0 +1,1806 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{positioning}
+\newcommand<>{\btikzset}[2]{\alt#3{\tikzset{#1}}{\tikzset{#2}}}
+\tikzset{highlight/.style={red,fill=green,text=blue}}
+
+\lstset{%
+basicstyle=\tiny,   %
+%%language=bash,%
+  breakatwhitespace=true,    %     
+  breaklines=true,                 % sets automatic line breaking
+  commentstyle=\color{green},    % comment style
+  frame=single,                    % adds a frame around the code
+  %keywordstyle=\color{blue},       % keyword style
+  %morekeywords={mkdir,git,add,commit,stage,merge,log},            % if you want to add more keywords to the set
+extendedchars=\true,
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+beamer-fragile
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format pdf2
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Version control systems
+\end_layout
+
+\begin_layout Subtitle
+Tools for tracking and managing the development of software
+\end_layout
+
+\begin_layout Author
+Will Furnass
+\end_layout
+
+\begin_layout Institute
+Pennine Water Group, University of Sheffield
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Why bother with version control?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+My new filing technique is unstoppable
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename bad_version_control.jpg
+	lyxscale 15
+	height 70theight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\family roman
+\size tiny
+http://geek-and-poke.com/2012/11/simply-explained.html
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Who writes code?
+\end_layout
+
+\begin_layout Itemize
+Who writes modular code?
+\end_layout
+
+\begin_layout Itemize
+Who uses version control?
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Issues
+\end_layout
+
+\begin_layout Itemize
+Create new version of existing project whenever make changes?
+\end_layout
+
+\begin_layout Itemize
+Only maintain one version of each file?
+\end_layout
+
+\begin_layout Itemize
+Easy to overwrite files
+\end_layout
+
+\begin_layout Itemize
+Use timestamps to determine newer versions?
+\end_layout
+
+\begin_layout Itemize
+If one file is reverted back to previous state which other files need reverting/
+changing for consistency?
+\end_layout
+
+\begin_layout Itemize
+Keep own changelog? 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Version Control Systems
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tools for tracking changes to the files in a 
+\series bold
+repository
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Support for:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viewing and comparing 
+\series bold
+revisions
+\series default
+\emph on
+ 
+\emph default
+of a project
+\end_layout
+
+\begin_layout Itemize
+Reverting files or the entire project to a previous state
+\end_layout
+
+\begin_layout Itemize
+Logging who, what, when and why for each set of changes that are 
+\series bold
+committed
+\end_layout
+
+\begin_layout Itemize
+Concurrent, collaborative development
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Use VCS when working on...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Single script
+\end_layout
+
+\begin_layout Itemize
+Software module
+\end_layout
+
+\begin_layout Itemize
+Large program
+\end_layout
+
+\begin_layout Itemize
+Website (HTML; CSS; PHP)
+\end_layout
+
+\begin_layout Itemize
+LaTeX document
+\end_layout
+
+\begin_layout Itemize
+Configuration files
+\end_layout
+
+\begin_layout Itemize
+Files that are not just plain text?
+\end_layout
+
+\begin_layout Itemize
+Infoworks
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Available VCS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename logo_mercurial.jpg
+	lyxscale 20
+	width 30col%
+	groupId vcs_logos
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename logo_git.png
+	lyxscale 20
+	width 30col%
+	groupId vcs_logos
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename logo_bazaar.png
+	lyxscale 20
+	width 30col%
+	groupId vcs_logos
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename logo_subversion.png
+	lyxscale 20
+	width 30col%
+	groupId vcs_logos
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+Linux Torvalds on git: 
+\emph on
+I'm an egotistical bastard, and I name all my projects after myself.
+ First 
+\emph default
+Linux
+\emph on
+, now 
+\emph default
+git
+\emph on
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Creating a repository
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Initialise a repository within a directory
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~$ mkdir my_project 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+will@guava:~$ cd my_project/ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git init 
+\end_layout
+
+\begin_layout Plain Layout
+
+Initialized empty Git repository in /home/will/my_project/.git/ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Version control information hidden in 
+\family typewriter
+.git 
+\family default
+directory
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Create a file within the repository directory e.g.
+ 
+\family typewriter
+pyhyd.py
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "repo_snapshots/pyhyd_initial.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Committing a change to the repository
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Add a new file to 
+\series bold
+index 
+\series default
+of files to track
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git add pyhyd.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+Create new 
+\series bold
+revision 
+\series default
+of the project
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git commit -m "Created cross-sectional area function"
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+[master (root-commit) a6d1269] Created cross-sectional area function 
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1 file changed, 10 insertions(+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+ create mode 100644 pyhyd.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+All tracked files are now as per the most recent project 
+\series bold
+revision
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git status 
+\end_layout
+
+\begin_layout Plain Layout
+
+# On branch master 
+\end_layout
+
+\begin_layout Plain Layout
+
+nothing to commit (working directory clean) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+Revision ID, author, date and comments stored in the 
+\series bold
+log
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git log
+\end_layout
+
+\begin_layout Plain Layout
+
+commit a6d126974f16d8c520a40bb737df37118126c6ff 
+\end_layout
+
+\begin_layout Plain Layout
+
+Author: Will Furnass <will@thearete.co.uk> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Date:   Tue Feb 26 19:57:15 2013 +0000
+\end_layout
+
+\begin_layout Plain Layout
+
+    Created cross-sectional area function 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+NB commit used as noun and verb
+\end_layout
+
+\begin_layout Plain Layout
+NB commit ID is actually SHA1 hash of repository
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Making further changes (#1)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Add error handling to 
+\family typewriter
+pyhyd.py
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "repo_snapshots/pyhyd_error_handing.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+Git knows the contents of the 
+\series bold
+working directory 
+\series default
+differ from the most recently 
+\series bold
+committed revision
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git status
+\end_layout
+
+\begin_layout Plain Layout
+
+# On branch master
+\end_layout
+
+\begin_layout Plain Layout
+
+# Changes not staged for commit:
+\end_layout
+
+\begin_layout Plain Layout
+
+#   (use "git add <file>..." to update what will be committed)
+\end_layout
+
+\begin_layout Plain Layout
+
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+#	modified:   pyhyd.py
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+no changes added to commit (use "git add" and/or "git commit -a")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Making further changes (#2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Need to add changes to git's 
+\series bold
+index 
+\series default
+(aka 
+\series bold
+staging area
+\series default
+)...
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git add pyhyd.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git status
+\end_layout
+
+\begin_layout Plain Layout
+
+# On branch master
+\end_layout
+
+\begin_layout Plain Layout
+
+# Changes to be committed:
+\end_layout
+
+\begin_layout Plain Layout
+
+#   (use "git reset HEAD <file>..." to unstage)
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+#	modified:   pyhyd.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+...before can commit another 
+\series bold
+revision 
+\series default
+to the repository:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git commit -m "Error checking for invalid diameters"
+\end_layout
+
+\begin_layout Plain Layout
+
+[master cda239e] Error checking for invalid diameters
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1 file changed, 2 insertions(+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git status 
+\end_layout
+
+\begin_layout Plain Layout
+
+# On branch master 
+\end_layout
+
+\begin_layout Plain Layout
+
+nothing to commit (working directory clean)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git hist
+\end_layout
+
+\begin_layout Plain Layout
+
+* cda239e 2013-02-26 | Error checking for invalid diameters (HEAD, master)
+ [Will Furnass]
+\end_layout
+
+\begin_layout Plain Layout
+
+* a6d1269 2013-02-26 | Created cross-sectional area function [Will Furnass]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Viewing previous revisions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Quickly view a previous 
+\series bold
+revision 
+\series default
+of a project
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git checkout a6d126974f16d8c520a40bb737df37118126c6ff	
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+HEAD is now at a6d1269...
+ Created cross-sectional area function
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+pyhyd.py
+\family default
+ now looks like
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "repo_snapshots/pyhyd_initial.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+Switch back to viewing the most recent revision with
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git checkout master
+\end_layout
+
+\begin_layout Plain Layout
+
+Previous HEAD position was a6d1269...
+ Created cross-sectional area function
+\end_layout
+
+\begin_layout Plain Layout
+
+Switched to branch 'master'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+HEAD
+\family default
+ is an 
+\bar under
+alias 
+\bar default
+for the revision currently associated with the working directory (but the
+ latter may also contain uncommitted changes)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Comparing revisions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Can see the lines that differ 
+\end_layout
+
+\begin_layout Itemize
+between two revisions
+\end_layout
+
+\begin_layout Itemize
+between files in current working directory and a particular revision
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+e.g.
+ Comparing the most recent two revisions:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git difftool -y --tool meld HEAD~1 HEAD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diff.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+The 
+\series bold
+diff 
+\series default
+for for file A and file B are the lines that differ between them
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Undoing changes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Made a mistake since the last commit? Scrap uncommitted changes made to
+ a file with
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git checkout -- pyhyd.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Plain Layout
+Revert one or more commits and scrap all changes in the working directory
+ using 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+will@guava:~/my_project$ git reset --hard a6d126974f16d8c520a40bb737df37118126c6
+ff
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Actions are easier to comprehend if look at branching
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex FragileFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex FragileTitle
+status open
+
+\begin_layout Plain Layout
+Branching and merging
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Single line of development
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<2->
+\end_layout
+
+\end_inset
+
+Create a 
+\series bold
+branch 
+\series default
+to develop new feature
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<3->
+\end_layout
+
+\end_inset
+
+Can now now develop new feature in parallel with fixing bugs in original
+ code
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<4->
+\end_layout
+
+\end_inset
+
+After developing and testing new feature, 
+\series bold
+merge 
+\series default
+the new branch into the default (
+\series bold
+master
+\series default
+) branch
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[node distance=1.5cm,nstyle/.style={circle,fill=blue!20,draw}]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node[nstyle]    (M1) {M1};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node[nstyle]    (M2) [right of=M1] {M2};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node[nstyle]    (M3) [right of=M2] {M3};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node<2->[nstyle] (B1) [below right of=M3] {B1};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node<3->[nstyle] (B2) [right of=B1] {B2};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node<3->[nstyle] (B3) [right of=B2] {B3};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node<3->[nstyle] (M4) [right of=M3] {M4};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node<4->[nstyle] (M5) [above right of=B3] {M5};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->] (M1) -- (M2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->] (M2) -- (M3);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<2->[->] (M3) -- (B1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<3->[->] (B1) -- (B2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<3->[->] (B2) -- (B3);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<3->[->] (M3) -- (M4);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<4->[->] (B3) -- (M5);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw<4->[->] (M4) -- (M5);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<5->
+\end_layout
+
+\end_inset
+
+Automatic merging usually successful but manual 
+\series bold
+conflict resolution 
+\series default
+sometimes required.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<6->
+\end_layout
+
+\end_inset
+
+
+\emph on
+Branching very useful if project developed by several people.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+How to get started with VCS?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Linux Easy to install if not preinstalled
+\end_layout
+
+\begin_layout Description
+OSX Install CLI or use 
+\series bold
+GitX 
+\series default
+GUI
+\end_layout
+
+\begin_layout Description
+Windows Install CLI or use 
+\series bold
+TortoiseGit
+\series default
+ GUI (w/ Windows Explorer integration)
+\end_layout
+
+\begin_layout Description
+Android 
+\series bold
+Agit
+\series default
+ client
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Resources
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+gitimmersion.com
+\family default
+ tutorial 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Version Control by Example
+\emph default
+ book (
+\family typewriter
+http://www.ericsink.com/vcbe
+\family default
+)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Best practise
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Advice from WANDisco (pertinent to single-developer projects):
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Description
+Commit
+\begin_inset space ~
+\end_inset
+
+little
+\begin_inset space ~
+\end_inset
+
+and
+\begin_inset space ~
+\end_inset
+
+often Reduce risk and complexity of merge conflicts
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Description
+Only
+\begin_inset space ~
+\end_inset
+
+commit
+\begin_inset space ~
+\end_inset
+
+finished
+\begin_inset space ~
+\end_inset
+
+work Never commit half-completed code: split tasks into manageable but logical
+ pieces then commit these regularly.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Description
+Update
+\begin_inset space ~
+\end_inset
+
+branches
+\begin_inset space ~
+\end_inset
+
+regularly Regularly merge changes made on the master branch in to other
+ current branches.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Description
+Make
+\begin_inset space ~
+\end_inset
+
+use
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+log
+\begin_inset space ~
+\end_inset
+
+messages Include as much information as possible (what changes were made,
+ why, and by whom, etc.) 
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Summary
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+VCS are systems for tracking the changes made to a set of files.
+\end_layout
+
+\begin_layout Itemize
+Each revision is the what, who, when and why for a set of changes.
+\end_layout
+
+\begin_layout Itemize
+Useful if working on own or with others.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Questions?
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document
