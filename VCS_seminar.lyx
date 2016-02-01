@@ -222,7 +222,7 @@ My new filing technique is unstoppable
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename bad_version_control.jpg
+	filename images/bad_version_control.jpg
 	lyxscale 15
 	height 70theight%
 
@@ -443,7 +443,7 @@ Available VCS
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename logo_mercurial.jpg
+	filename images/logo_mercurial.jpg
 	lyxscale 20
 	width 30col%
 	groupId vcs_logos
@@ -460,7 +460,7 @@ Available VCS
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename logo_git.png
+	filename images/logo_git.png
 	lyxscale 20
 	width 30col%
 	groupId vcs_logos
@@ -479,7 +479,7 @@ Available VCS
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename logo_bazaar.png
+	filename images/logo_bazaar.png
 	lyxscale 20
 	width 30col%
 	groupId vcs_logos
@@ -496,7 +496,7 @@ Available VCS
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename logo_subversion.png
+	filename images/logo_subversion.png
 	lyxscale 20
 	width 30col%
 	groupId vcs_logos
@@ -1348,7 +1348,7 @@ $ git difftool -y --tool meld HEAD~1 HEAD
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename diff.png
+	filename images/diff.png
 	width 100col%
 
 \end_inset
@@ -1779,6 +1779,7 @@ Resources
 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 
 \family typewriter
@@ -1799,6 +1800,7 @@ http://www.ericsink.com/vcbe
 )
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Separator
 
