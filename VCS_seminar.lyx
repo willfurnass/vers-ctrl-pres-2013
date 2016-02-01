@@ -14,25 +14,13 @@
 \usetikzlibrary{positioning}
 \newcommand<>{\btikzset}[2]{\alt#3{\tikzset{#1}}{\tikzset{#2}}}
 \tikzset{highlight/.style={red,fill=green,text=blue}}
-
-\lstset{%
-basicstyle=\tiny,   %
-%%language=bash,%
-  breakatwhitespace=true,    %     
-  breaklines=true,                 % sets automatic line breaking
-  commentstyle=\color{green},    % comment style
-  frame=single,                    % adds a frame around the code
-  %keywordstyle=\color{blue},       % keyword style
-  %morekeywords={mkdir,git,add,commit,stage,merge,log},            % if you want to add more keywords to the set
-extendedchars=\true,
-}
 \end_preamble
 \use_default_options true
 \begin_modules
 beamer-fragile
 \end_modules
 \maintain_unincluded_children false
-\language english
+\language british
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -112,11 +100,104 @@ Will Furnass
 Pennine Water Group, University of Sheffield
 \end_layout
 
-\begin_layout Section
-Motivation
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{
+\end_layout
+
+\begin_layout Plain Layout
+
+  basicstyle=
+\backslash
+tiny,
+\end_layout
+
+\begin_layout Plain Layout
+
+  %language=bash,
+\end_layout
+
+\begin_layout Plain Layout
+
+  breakatwhitespace=false,
+\end_layout
+
+\begin_layout Plain Layout
+
+  breaklines=true,                 % sets automatic line breaking   
+\end_layout
+
+\begin_layout Plain Layout
+
+  commentstyle=
+\backslash
+color{green},      % comment style   
+\end_layout
+
+\begin_layout Plain Layout
+
+  frame=single,                    % adds a frame around the code   
+\end_layout
+
+\begin_layout Plain Layout
+
+  %keywordstyle=
+\backslash
+color{blue},      % keyword style   
+\end_layout
+
+\begin_layout Plain Layout
+
+  %morekeywords={mkdir,git,add,commit,stage,merge,log},            % if
+ you want to add more keywords to the set  
+\end_layout
+
+\begin_layout Plain Layout
+
+  %extendedchars=
+\backslash
+true, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  showstringspaces=false,
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -217,6 +298,11 @@ Keep own changelog?
 
 \end_inset
 
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
@@ -450,6 +536,10 @@ git
 \end_layout
 
 \end_deeper
+\begin_layout Separator
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex FragileFrame
 status open
@@ -467,7 +557,7 @@ Creating a repository
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Plain Layout
 Initialise a repository within a directory
 \end_layout
 
@@ -478,25 +568,21 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~$ mkdir my_project 
+$ mkdir my_project 
 \end_layout
 
 \begin_layout Plain Layout
 
+$ cd my_project
 \end_layout
 
 \begin_layout Plain Layout
 
-will@guava:~$ cd my_project/ 
+$ git init 
 \end_layout
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-will@guava:~/my_project$ git init 
 \end_layout
 
 \begin_layout Plain Layout
@@ -509,7 +595,7 @@ Initialized empty Git repository in /home/will/my_project/.git/
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Plain Layout
 Version control information hidden in 
 \family typewriter
 .git 
@@ -521,7 +607,7 @@ directory
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Plain Layout
 Create a file within the repository directory e.g.
  
 \family typewriter
@@ -541,6 +627,10 @@ lstparams "language=Python"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -576,7 +666,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git add pyhyd.py
+$ git add pyhyd.py
 \end_layout
 
 \end_inset
@@ -603,8 +693,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git commit -m "Created cross-sectional area function"
- 
+$ git commit -m "Created cross-sectional area function" 
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -644,7 +737,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git status 
+$ git status 
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -679,7 +776,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git log
+$ git log
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -726,6 +827,10 @@ NB commit ID is actually SHA1 hash of repository
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -784,7 +889,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git status
+$ git status
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -837,6 +946,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 \end_layout
 
+\begin_layout Separator
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex FragileFrame
 status open
@@ -873,7 +986,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git add pyhyd.py
+$ git add pyhyd.py
 \end_layout
 
 \end_inset
@@ -892,7 +1005,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git status
+$ git status
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -944,7 +1061,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git commit -m "Error checking for invalid diameters"
+$ git commit -m "Error checking for invalid diameters"
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -973,7 +1094,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git status 
+$ git status 
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -1002,7 +1127,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git hist
+$ git hist
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -1023,6 +1152,10 @@ will@guava:~/my_project$ git hist
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -1058,7 +1191,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git checkout a6d126974f16d8c520a40bb737df37118126c6ff	
+$ git checkout a6d126974f16d8c520a40bb737df37118126c6ff	
 \end_layout
 
 \begin_layout Plain Layout
@@ -1111,7 +1244,11 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git checkout master
+$ git checkout master
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -1149,6 +1286,10 @@ for the revision currently associated with the working directory (but the
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -1197,7 +1338,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git difftool -y --tool meld HEAD~1 HEAD
+$ git difftool -y --tool meld HEAD~1 HEAD
 \end_layout
 
 \end_inset
@@ -1232,6 +1373,10 @@ for for file A and file B are the lines that differ between them
 
 \end_layout
 
+\begin_layout Separator
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex FragileFrame
 status open
@@ -1261,7 +1406,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git checkout -- pyhyd.py
+$ git checkout -- pyhyd.py
 \end_layout
 
 \end_inset
@@ -1285,8 +1430,7 @@ status open
 
 \begin_layout Plain Layout
 
-will@guava:~/my_project$ git reset --hard a6d126974f16d8c520a40bb737df37118126c6
-ff
+$ git reset --hard a6d126974f16d8c520a40bb737df37118126c6ff
 \end_layout
 
 \end_inset
@@ -1309,6 +1453,10 @@ Actions are easier to comprehend if look at branching
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -1388,6 +1536,7 @@ master
 ) branch
 \end_layout
 
+\begin_deeper
 \begin_layout Plain Layout
 \begin_inset ERT
 status open
@@ -1527,6 +1676,7 @@ end{tikzpicture}
 
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 \begin_inset ERT
 status open
@@ -1563,6 +1713,10 @@ Branching very useful if project developed by several people.
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Separator
 
 \end_layout
 
@@ -1625,7 +1779,6 @@ Resources
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 
 \family typewriter
@@ -1646,7 +1799,6 @@ http://www.ericsink.com/vcbe
 )
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Separator
 
@@ -1800,7 +1952,6 @@ Useful if working on own or with others.
 Questions?
 \end_layout
 
-\end_deeper
 \end_deeper
 \end_body
 \end_document
